@@ -1,10 +1,12 @@
 # wwSmartStyleMapping
 Map 'pseudo' styles from imported articles to real styles as defined in the target article frame.
 
-This Enterprise Server plug-in deploys all the InDesign and InCopy event scripts and supporting scripts to implement the Smart Style Mapping functionality.
+This Enterprise Server plug-in deploys all the InDesign and InCopy event scripts and supporting scripts to implement the Smart Style Mapping functionality. Script deployment is based on this functionality:
+https://helpcenter.woodwing.com/hc/en-us/articles/204807589-Automatically-deploying-event-scripts-for-Smart-Connection-in-InDesign-or-InCopy?mobile_site=true
 
 # Installation:
 - install the plug-in in Enteprise/config/plugins and activate in the admin UI
+https://helpcenter.woodwing.com/hc/en-us/articles/209992006-Installing-a-custom-Enterprise-Server-plug-in-in-Enterprise-Server-10
 
 # Configuration:
 - The plugins and the scripts do not require configurations
