@@ -27,7 +27,7 @@ var MyMenuItems = Array(
 	[ 'Extra',  ['$ID/RtMouseLayout'], 
 				'Inspect Style Mapping', 	
 				(function(){ 
-					app.doScript(File(app.scriptPreferences.scriptsFolder.fullName+"/../EnterpriseScripts/DPGSmartStyles/inspect_style_mapping.jsx")); }), 
+					app.doScript(File(app.scriptPreferences.scriptsFolder.fullName+"/../EnterpriseScripts/SmartStyleMapping/inspect_style_mapping.jsx")); }), 
 				_checkselection ],
 
 );
