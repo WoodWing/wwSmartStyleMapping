@@ -52,6 +52,7 @@
 				}
 			}
 
+			var storiescheckedout = [];
 			var do_parastyle = true;
 			
 			for (var i=0; i<textitems.length; i++) {
@@ -65,8 +66,15 @@
 				
 				// we need the story, as it contains the text
 				var story = item.parentStory;
-			
+				
+				if (story.textLock) {
+					try {
+						story.managedArticle.checkOut();
+						storiescheckedout.push(story);
+					} catch (err) {
 
+					}
+				};
 
 				// combinations of para styles and char styles are applied on so called
 				// 'textStyleRanges'. We will iterate those textStyleRanges, which is
@@ -119,7 +127,7 @@
 				// faster than iterating Paragraphs and Characters separately
 				for (var p=0; p<story.textStyleRanges.length; p++) {
 					var tsr = story.textStyleRanges[p];
-					app.select(tsr);
+					// app.select(tsr);
 
 					try {
 						var csk = tsr.appliedCharacterStyle.name;
@@ -158,6 +166,26 @@
 					}		
 				}
 			}
+			// **** checkin not possible within the context of a running 'afterplace'
+			// need to install a 'one off' idle task
+			// notice that a javascript closure is used to make the
+			// storiescheckedout array available within the idle function
+
+			var myIdleTask = app.idleTasks.add({name:"ww_checkin", sleep:1});
+			myIdleTask.addEventListener(IdleEvent.ON_IDLE, 
+					function (myIdleEvent) {
+						
+						for (var si=0; si<storiescheckedout.length;si++) {
+							try {
+								storiescheckedout[si].managedArticle.checkIn();
+							} catch (err) {
+							}
+						}	
+																
+						var myIdleTask = app.idleTasks.itemByName( "ww_checkin"); 
+						if (myIdleTask != null) myIdleTask.remove();
+					});
+
 		}
 
 		// 
